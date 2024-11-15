@@ -13,13 +13,16 @@
             background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
             color: #fff;
             min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .container {
             max-width: 800px;
-            margin: 40px auto;
+            margin: 20px;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.9); /* Уменьшил прозрачность */
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
@@ -33,12 +36,12 @@
 
         .profile h1, .profile h2 {
             text-align: center;
+            color: #1a2a6c;
         }
 
-        .quote {
+        .profile p {
             text-align: center;
-            font-style: italic;
-            color: #666;
+            color: #333;
         }
 
         /* Секции */
@@ -49,6 +52,8 @@
             color: #fff;
             border-radius: 5px;
             margin-top: 15px;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .section-title:hover {
@@ -67,12 +72,14 @@
         .link-button, .science-link {
             display: block;
             margin: 10px 0;
-            padding: 10px;
+            padding: 12px;
             background: #1a2a6c;
             color: #fff;
             text-decoration: none;
             text-align: center;
             border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 16px;
         }
 
         .link-button:hover, .science-link:hover {
@@ -86,6 +93,18 @@
             font-size: 14px;
             color: #eee;
         }
+
+        /* Мобильная адаптация */
+        @media (max-width: 600px) {
+            .profile h1 {
+                font-size: 24px; /* Увеличил текст на мобильных устройствах */
+            }
+
+            .link-button, .science-link {
+                font-size: 16px;
+                padding: 12px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -96,7 +115,6 @@
             <h1>Доронин</h1>
             <h2>Александр Сергеевич</h2>
             <p>Ассистент ВШТБ | Ответственный за практическую подготовку студентов ВШТБ</p>
-            <p class="quote">"Вдохновлять студентов и вести их к новым открытиям!"</p>
         </div>
 
         <!-- Контакты -->
@@ -132,19 +150,6 @@
                 <a href="https://scholar.google.ru/citations?user=h3hk5dUAAAAJ" class="science-link">
                     📖 Google Scholar
                 </a>
-            </div>
-        </div>
-
-        <!-- Видео -->
-        <div class="section">
-            <div class="section-title" onclick="toggleSection(this)">
-                Видеоприветствие <span class="arrow">▼</span>
-            </div>
-            <div class="section-content">
-                <video controls>
-                    <source src="greeting.mp4" type="video/mp4">
-                    Ваш браузер не поддерживает видео.
-                </video>
             </div>
         </div>
     </div>
