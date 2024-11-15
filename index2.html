@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Доронин А.С. - Научный профиль</title>
+    <style>
+        /* Общий стиль */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .profile h1, .profile h2 {
+            text-align: center;
+        }
+
+        .quote {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+        }
+
+        /* Секции */
+        .section-title {
+            cursor: pointer;
+            padding: 10px;
+            background: #1a2a6c;
+            color: #fff;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        .section-title:hover {
+            background: #b21f1f;
+        }
+
+        .section-content {
+            display: none;
+            padding: 10px;
+            background: #f9f9f9;
+            color: #333;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .link-button, .science-link {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background: #1a2a6c;
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .link-button:hover, .science-link:hover {
+            background: #b21f1f;
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Профиль -->
+        <div class="profile">
+            <img src="https://hsts.spbstu.ru/userfiles/images/Sotrudniki/Doronin_AS.jpg" alt="Доронин А.С.">
+            <h1>Доронин</h1>
+            <h2>Александр Сергеевич</h2>
+            <p>Ассистент ВШТБ | Ответственный за практическую подготовку студентов ВШТБ</p>
+            <p class="quote">"Вдохновлять студентов и вести их к новым открытиям!"</p>
+        </div>
+
+        <!-- Контакты -->
+        <div class="section">
+            <div class="section-title" onclick="toggleSection(this)">
+                Контакты <span class="arrow">▼</span>
+            </div>
+            <div class="section-content">
+                <a href="tel:+79522649609" class="link-button">
+                    📞 +7 (952) 264-96-09
+                </a>
+                <a href="mailto:doronin_as@spbstu.ru" class="link-button">
+                    ✉️ doronin_as@spbstu.ru
+                </a>
+                <a href="https://t.me/doronin_as" class="link-button">
+                    🔗 Telegram
+                </a>
+            </div>
+        </div>
+
+        <!-- Научные профили -->
+        <div class="section">
+            <div class="section-title" onclick="toggleSection(this)">
+                Научные профили <span class="arrow">▼</span>
+            </div>
+            <div class="section-content">
+                <a href="https://www.scopus.com/authid/detail.uri?authorId=57205428468" class="science-link">
+                    🌐 Scopus
+                </a>
+                <a href="https://www.elibrary.ru/author_profile.asp?authorid=805309" class="science-link">
+                    📚 eLibrary
+                </a>
+                <a href="https://scholar.google.ru/citations?user=h3hk5dUAAAAJ" class="science-link">
+                    📖 Google Scholar
+                </a>
+            </div>
+        </div>
+
+        <!-- Видео -->
+        <div class="section">
+            <div class="section-title" onclick="toggleSection(this)">
+                Видеоприветствие <span class="arrow">▼</span>
+            </div>
+            <div class="section-content">
+                <video controls>
+                    <source src="greeting.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает видео.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Александр Сергеевич Доронин. Разработано для GitHub Pages.</p>
+    </footer>
+
+    <script>
+        // Разворачивание/сворачивание секций
+        function toggleSection(element) {
+            const content = element.nextElementSibling;
+            content.style.display = content.style.display === "block" ? "none" : "block";
+        }
+    </script>
+</body>
+</html>
