@@ -5,165 +5,208 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Доронин А.С. - Научный профиль</title>
     <style>
-        /* Общий стиль */
         body {
-            font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-            color: #fff;
+            padding: 20px;
+            font-family: 'Arial', sans-serif;
+            background: var(--background-gradient);
+            color: var(--text-color);
+            transition: background 0.5s, color 0.5s;
             min-height: 100vh;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
         }
-
+        
+        :root {
+            --background-gradient: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
+            --text-color: #333;
+            --container-bg: rgba(255, 255, 255, 0.95);
+            --section-title: #1a2a6c;
+            --button-bg: #1a2a6c;
+            --button-hover-bg: #b21f1f;
+            --link-bg: #f8f9fa;
+            --link-hover-bg: #1a2a6c;
+            --link-hover-color: white;
+        }
+        
+        [data-theme="night"] {
+            --background-gradient: linear-gradient(135deg, #0d0d0d 0%, #1c1c1c 50%, #333 100%);
+            --text-color: #fff;
+            --container-bg: rgba(50, 50, 50, 0.95);
+            --section-title: #fdbb2d;
+            --button-bg: #fdbb2d;
+            --button-hover-bg: #b21f1f;
+            --link-bg: rgba(255, 255, 255, 0.1);
+            --link-hover-bg: #fdbb2d;
+            --link-hover-color: #000;
+        }
+        
         .container {
-            max-width: 800px;
-            margin: 20px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.9); /* Уменьшил прозрачность */
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+            width: 100%;
+            background: var(--container-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
-
+        
+        .profile {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
         .profile img {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            border: 4px solid var(--container-bg);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
-
-        .profile h1, .profile h2 {
-            text-align: center;
-            color: #1a2a6c;
+        
+        .profile h1 {
+            font-size: 32px;
         }
-
-        .profile p {
-            text-align: center;
-            color: #333;
+        
+        .profile h2 {
+            font-size: 24px;
+            color: var(--section-title);
         }
-
-        /* Секции */
+        
         .section-title {
+            font-size: 22px;
+            color: var(--section-title);
             cursor: pointer;
-            padding: 10px;
-            background: #1a2a6c;
-            color: #fff;
-            border-radius: 5px;
-            margin-top: 15px;
-            text-align: center;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            user-select: none;
         }
-
+        
         .section-title:hover {
-            background: #b21f1f;
+            color: var(--button-hover-bg);
         }
-
-        .section-content {
-            display: none;
-            padding: 10px;
-            background: #f9f9f9;
-            color: #333;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-
-        .link-button, .science-link {
-            display: block;
-            margin: 10px 0;
-            padding: 12px;
-            background: #1a2a6c;
-            color: #fff;
-            text-decoration: none;
+        
+        .button-container {
             text-align: center;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 15px;
+        }
+        
+        .download-button {
+            padding: 12px 24px;
+            background: var(--button-bg);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
             font-size: 16px;
         }
 
-        .link-button:hover, .science-link:hover {
-            background: #b21f1f;
-            transform: scale(1.05);
+        .download-button:hover {
+            background: var(--button-hover-bg);
+            transform: translateY(-2px);
         }
 
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-            color: #eee;
+        .link-button {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            background: var(--link-bg);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        .link-button:hover {
+            background: var(--link-hover-bg);
+            color: var(--link-hover-color);
+        }
+        
+        .toggle-theme {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: var(--button-bg);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        /* Мобильная адаптация */
-        @media (max-width: 600px) {
-            .profile h1 {
-                font-size: 24px; /* Увеличил текст на мобильных устройствах */
-            }
-
-            .link-button, .science-link {
-                font-size: 16px;
-                padding: 12px;
-            }
+        .toggle-theme:hover {
+            background: var(--button-hover-bg);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Профиль -->
         <div class="profile">
             <img src="https://hsts.spbstu.ru/userfiles/images/Sotrudniki/Doronin_AS.jpg" alt="Доронин А.С.">
             <h1>Доронин</h1>
             <h2>Александр Сергеевич</h2>
             <p>Ассистент ВШТБ | Ответственный за практическую подготовку студентов ВШТБ</p>
         </div>
-
-        <!-- Контакты -->
+        
         <div class="section">
             <div class="section-title" onclick="toggleSection(this)">
-                Контакты <span class="arrow">▼</span>
+                Контакты
             </div>
             <div class="section-content">
-                <a href="tel:+79522649609" class="link-button">
-                    📞 +7 (952) 264-96-09
-                </a>
-                <a href="mailto:doronin_as@spbstu.ru" class="link-button">
-                    ✉️ doronin_as@spbstu.ru
-                </a>
-                <a href="https://t.me/doronin_as" class="link-button">
-                    🔗 Telegram
-                </a>
-            </div>
-        </div>
-
-        <!-- Научные профили -->
-        <div class="section">
-            <div class="section-title" onclick="toggleSection(this)">
-                Научные профили <span class="arrow">▼</span>
-            </div>
-            <div class="section-content">
-                <a href="https://www.scopus.com/authid/detail.uri?authorId=57205428468" class="science-link">
-                    🌐 Scopus
-                </a>
-                <a href="https://www.elibrary.ru/author_profile.asp?authorid=805309" class="science-link">
-                    📚 eLibrary
-                </a>
-                <a href="https://scholar.google.ru/citations?user=h3hk5dUAAAAJ" class="science-link">
-                    📖 Google Scholar
-                </a>
+                <div class="button-container">
+                    <button onclick="downloadVCard()" class="download-button">Добавить контакт</button>
+                </div>
+                <a href="tel:+79522649609" class="link-button">+7 (952) 264-96-09</a>
+                <a href="mailto:doronin_as@spbstu.ru" class="link-button">doronin_as@spbstu.ru</a>
             </div>
         </div>
     </div>
 
-    <footer>
-        <p>© 2024 Александр Сергеевич Доронин. Разработано для GitHub Pages.</p>
-    </footer>
+    <button class="toggle-theme" onclick="toggleTheme()">Тема: День</button>
 
     <script>
-        // Разворачивание/сворачивание секций
-        function toggleSection(element) {
-            const content = element.nextElementSibling;
-            content.style.display = content.style.display === "block" ? "none" : "block";
+        function toggleTheme() {
+            const body = document.body;
+            const button = document.querySelector('.toggle-theme');
+            const isNight = body.dataset.theme === 'night';
+
+            if (isNight) {
+                body.dataset.theme = 'day';
+                button.textContent = 'Тема: День';
+            } else {
+                body.dataset.theme = 'night';
+                button.textContent = 'Тема: Ночь';
+            }
         }
-    </script>
+
+        <script>
+    function downloadVCard() {
+        const vCardData = 
+`BEGIN:VCARD
+VERSION:3.0
+FN:Доронин Александр Сергеевич
+N:Доронин;Александр;Сергеевич;;;
+ORG:СПбПУ ВШТБ
+TITLE:Ассистент ВШТБ
+TEL;TYPE=CELL:+79522649609
+EMAIL;TYPE=WORK:doronin_as@spbstu.ru
+URL:https://hsts.spbstu.ru/
+X-TELEGRAM:doronin_as
+PHOTO;VALUE=URL:https://hsts.spbstu.ru/userfiles/images/Sotrudniki/Doronin_AS.jpg
+NOTE:Ответственный за практическую подготовку студентов ВШТБ
+END:VCARD`;
+
+        const blob = new Blob([vCardData], { type: 'text/vcard' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'doronin_as.vcf');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    }
+</script>
 </body>
 </html>
