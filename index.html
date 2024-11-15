@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Доронин А.С. - Научный профиль</title>
     <style>
+        /* Previous styles remain the same */
         body {
             margin: 0;
             padding: 20px;
@@ -133,10 +134,10 @@
             transform: translateY(-2px);
         }
         
-        .link-button img {
+        .link-button svg, .link-button img {
             width: 24px;
             height: 24px;
-            margin-right: 15px;
+            margin-right: 20px;
         }
         
         .science-profiles {
@@ -164,9 +165,32 @@
             transform: translateY(-2px);
         }
         
-        .science-link img {
+        .science-link svg, .science-link img {
             width: 24px;
             height: 24px;
+            margin-right: 10px;
+        }
+
+        .download-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            background: #1a2a6c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .download-button:hover {
+            background: #b21f1f;
+            transform: translateY(-2px);
+        }
+
+        .download-button svg {
             margin-right: 10px;
         }
         
@@ -197,7 +221,15 @@
             <h2>Александр Сергеевич</h2>
             <p>Ассистент ВШТБ | Ответственный за практическую подготовку студентов ВШТБ</p>
         </div>
-        
+            <button onclick="downloadVCard()" class="download-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Добавить контакт
+        </button>
+    </div>
         <div class="section">
             <div class="section-title" onclick="toggleSection(this)">
                 Контакты
@@ -224,11 +256,11 @@
         </div>
         
         <div class="section">
-            <div class="section-title" onclick="toggleSection(this)">
+            <div class="section-title collapsed" onclick="toggleSection(this)">
                 Научные профили
                 <span class="arrow">▼</span>
             </div>
-            <div class="section-content">
+            <div class="section-content collapsed">
                 <div class="science-profiles">
                     <a href="https://www.scopus.com/authid/detail.uri?authorId=57205428468" class="science-link">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
@@ -247,13 +279,37 @@
                 </div>
             </div>
         </div>
-    </div>
+
 
     <script>
         function toggleSection(element) {
             const content = element.nextElementSibling;
             element.classList.toggle('collapsed');
             content.classList.toggle('collapsed');
+        }
+
+        function downloadVCard() {
+            const vCardData = 
+`BEGIN:VCARD
+VERSION:3.0
+FN:Доронин Александр Сергеевич
+N:Доронин;Александр;Сергеевич;;;
+TITLE:Ассистент ВШТБ
+TEL;TYPE=CELL:+79522649609
+EMAIL;TYPE=WORK:doronin_as@spbstu.ru
+X-TELEGRAM:doronin_as
+ORG:СПбПУ ВШТБ
+END:VCARD`;
+
+            const blob = new Blob([vCardData], { type: 'text/vcard' });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'doronin_as.vcf');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
         }
     </script>
 </body>
